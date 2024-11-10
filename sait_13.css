@@ -1,9 +1,7 @@
 body{direction: rtl;}
 header{
-    background-color:aquamarine;
+    background-color:rgb(185, 252, 230);
     text-align: center;
-    width: 1500px ;
-    height: 200px;
 }
 nav{
 
