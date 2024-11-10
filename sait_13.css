@@ -2,26 +2,32 @@ body{direction: rtl;}
 header{
     background-color:aquamarine;
     text-align: center;
+    width: 1500px ;
+    height: 200px;
 }
 nav{
-    background-color: aqua;
+
 }
+
 ul{
-    background-color: deeppink;
-    margin: 3px;
-    padding: 3px;
+    background-color: rgb(255, 10, 141);
+    height:800px;
+    margin: 7px;
+
+    padding: 1px;
     display:flex;
+  
+    
 }
+
 ul li{
     background-color: darkviolet;
-    margin: 5px;
+    margin: 4px;
     list-style:none;;
-    width: 100px;
+    width: 800px;
+    height: 800px;
     border-radius:8px;
-    text-align: center;
-    width: 500px;
-    height: 50px;;
-    
+    text-align: center;  
 }
 main{
     background-color:deepskyblue;
