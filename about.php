@@ -6,9 +6,9 @@
     <title>Document</title>
 </head>
 <body>
-<td id="mahdi"colspan="7">
- <img src="stractor.jpg">
-  </td>
-  <p>استراکتور </P>
+    <?php
+    include 'main.html';
+    ?>
+    <p>"من دانشجوی هنرستان طالبی ام و این یک پروژه ساده است"</p>
 </body>
 </html>

@@ -6,9 +6,9 @@
     <title>Document</title>
 </head>
 <body>
-<td id="mahdi"colspan="7">
- <img src="asal.jpg">
-  </td>
-  <p>عسل </p>
+    <?php
+    include 'main.html';
+    ?>
+    <p>من یک دانشجوی ساده ام و خدمات خاصی ندارم</p>
 </body>
 </html>
