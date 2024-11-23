@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background:rgb(3, 255, 255);
+    color: #1cedae;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav {
+    background:dodgerblue;
+    color: #ffffff;
+    padding: 10px 0;
+}
+
+nav ul {
+    font-family: Arial, sans-serif;
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #073258;
+    text-decoration:underline;
+
+}
+main {
+    text-align: right;
+    padding: 20px;
+    background:bisque;
+    color: #1cedae;
+    margin: 20px;
+    border-radius: 5px;
+ }
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background: #1587cd;
+    color: white;
+    text-align:start;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+    bottom: 0;
+    width: 100%;
+}

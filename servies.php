@@ -6,9 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    <?php
-    include 'main.html';
+<?php
+      include 'sait.html';
     ?>
-    <p>من یک دانشجوی ساده ام و خدمات خاصی ندارم</p>
+    <td id="mahdi"colspan="7">
+ <img src="stractor">
+ <p>اسکتراکتور</p>
+  </td>
 </body>
 </html>
