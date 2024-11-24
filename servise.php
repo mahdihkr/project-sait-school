@@ -7,7 +7,7 @@
 </head>
 <body>
 <?php
-      include 'sait12.html';
+      include 'index1.html';
     ?>
     <td id="mahdi"colspan="7">
  <img src="stractor">

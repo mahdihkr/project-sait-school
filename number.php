@@ -7,7 +7,7 @@
 </head>
 <body>
 <?php
-      include 'sait12.html';
+      include 'index1.html';
     ?>
      <p>شماره تماس :09368772005</p>
      <p>شماره پشتیبان : 42657583</p>
