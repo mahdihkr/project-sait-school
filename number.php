@@ -4,15 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            text-align:center ;
+            color:dimgray;
+            
+        }
+        h1{
+          text-align:center ;
+            color:black;
+   
+          
+        }
+      
+    
+    </style>
+ 
 </head>
 <body>
     <?php
-      include 'index1.html';
+      include 'index.html';
     ?>
-    <header>
-      <p>شماره تماس :09368772005</p>
-      <p>شماره پشتیبان : 42657583</p>
+       <h2>:شماره تماس</h2>
+       <p>09368772005</p>
+       <h2>:شماره پشتیبان</h2>
+      <p>42657583</p>
+
+      <h1>
       <p>همچنین به شماره همراه میتوانید در ایتا و تلگرام پیام بدهید</p>
-    </header>
+      </h1>
 </body>
 </html>

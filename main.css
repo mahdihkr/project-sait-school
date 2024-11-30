@@ -54,3 +54,12 @@ footer {
     bottom: 0;
     width: 100%;
 }
+h2{ 
+    text-align: right;
+    padding: 20px;
+    background:#dfe7e6;
+    color:rgb(69, 69, 192);
+    margin: 0px;
+    border-radius: 5px;
+ }
+
