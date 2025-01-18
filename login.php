@@ -45,9 +45,62 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div> 
             <button type="submit" class="btn">Login</button> 
             <div class="sign-up"> 
-                <p>Don't have an account?<a href="home.php">Register</a></p> 
+                <p>Don't have an account?<a href="home.php">Register</a></p>
+                <button class="back-button" onclick="goToHomePage()"><i class="fas fa-home icon"></i> <!-- آیکون خانه -->
+                </button>
             </div> 
         </form> 
     </div> 
 </body> 
 </html>
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>جایگزینی متن با آیکون</title>
+    <style>
+        .icon {
+            font-size: 24px; /* سایز آیکون */
+            color: #444; /* رنگ آیکون */
+        }
+    </style>
+</head>
+<body>
+    <div>
+       
+    </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحه دوم</title>
+    <style>
+        .back-button {
+            padding: 10px 20px;
+            background-color :rgba(90, 21, 209, 0.01);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color:rgba(0, 87, 179, 0.01);
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function goToHomePage() {
+            window.location.href = 'index.html'; // آدرس صفحه اصلی خود را اینجا وارد کنید
+        }
+    </script>
+
+</body>
+</html>
+
