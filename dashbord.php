@@ -25,7 +25,7 @@ $username = $_SESSION['username'];
             <h2>خوش آمدید، <span class="username">کاربر!</span></h2>
             <p>شما با موفقیت وارد شدید.</p>
             <div class="buttons">
-                <a href="index.html" class="btn btn-primary">صفحه اصلی</a>
+                <a href="index.php" class="btn btn-primary">صفحه اصلی</a>
                 <a href="logout.php" class="btn btn-danger">خروج</a>
             </div>
         </div>
