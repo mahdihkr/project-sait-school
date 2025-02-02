@@ -1,22 +1,18 @@
 <?php
 include 'db.php';
-session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
-    $password = $_POST['password'];
+    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-    $stmt = $conn->prepare("SELECT * FROM users WHERE username = :username");
+    $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
     $stmt->bindParam(':username', $username);
-    $stmt->execute();
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->bindParam(':password', $password);
 
-    if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['username'] = $user['username'];
-        header("Location: dashbord.php");
+    if ($stmt->execute()) {?>
+        <meta http-equiv="refresh" content="0; url='index.html'" /><?php
     } else {
-        echo '<script type=text/javascript>alert("چنین کاربری در سیستم موجود نیست : رمز اشتباه یا یوزر نیم اشتباه")</script>';
+        echo '<script type=text/javascript>alert("خطا در انجام عملیات")</script>';
     }
 }
 ?>
@@ -34,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <div class="wrapper">
         <form method="POST" action="">
-            <h1>Login</h1>
+            <h1>sign up</h1>
             <div class="input-bux">
                 <input type="text" placeholder="Username" id="username" name="username" required>
                 <i class='bx bxs-user'></i>
@@ -46,11 +42,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="remember-forgot">
                 <label><input type="checkbox"> Remember me </label>
-                <a href="#">Forgot password ?</a>
             </div>
-            <button type="submit" class="btn">Login</button>
+            <button type="submit" class="btn">Sign up</button>
             <div class="sign-up">
-                <p>Don't have an account?<a href="register.php">Register</a></p>
+                <p>are you have account?<a href="login.php">Login</a></p>
             </div>
         </form>
     </div>
