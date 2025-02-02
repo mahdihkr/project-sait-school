@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bindParam(':password', $password);
 
     if ($stmt->execute()) {?>
-        <meta http-equiv="refresh" content="0; url='index.html'" /><?php
+        <meta http-equiv="refresh" content="0; url='login.php'" /><?php
     } else {
         echo '<script type=text/javascript>alert("خطا در انجام عملیات")</script>';
     }
