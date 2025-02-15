@@ -30,6 +30,9 @@
             
         }
 
+
+
+
     </style>
 </head>
 <body>
@@ -83,7 +86,7 @@
         
         <p>با ما در سفر به دنیای زنبوران و عسل‌های طبیعی همراه شوید.</p>
        
-        <img src="./images/image3.jpg" class="card-img-top" alt="">
+        <img src="./images/image10.jpg" class="card-img-top" alt="">
 
         </div>
 
