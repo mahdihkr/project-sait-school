@@ -1,182 +1,321 @@
+<?php
+include("them-header.php");
+?>
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>زنبورداری</title>
-    <link rel="stylesheet" href="./css/bootstrap.css">
+    <title>کندوی اخبار | سیستم مدیریت محتوا</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --bee-yellow: #FFD700;
+            --bee-dark-yellow: #FFC600;
+            --bee-black: #1A1A1A;
+            --bee-light-yellow: #FFF9C4;
+            --bee-text-dark: #333;
+        }
+        
         body {
-            background-color: #f8f9fa;
+            background-color: #f9f5e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        .hero {
-            background-image: url('https://example.com/your-image.jpg');
+        
+        .bee-container {
+            background: url('https://images.unsplash.com/photo-1587049352851-8d4e89133924?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
             background-size: cover;
-            color:deeppink;
-            padding: 100px 0;
-            text-align: center;
+            min-height: 100vh;
+            padding: 2rem 0;
         }
-        .footer {
-            background-color: #343a40;
-            color: rgb(6, 146, 221);
-            padding: 20px 0;
-            text-align: center;
+        
+        .bee-overlay {
+            background-color: rgba(255, 236, 179, 0.85);
+            min-height: 100vh;
+            padding: 2rem 0;
         }
-        h2{
-            color: #0c7bea;
+        
+        .bee-card {
+            border-radius: 15px;
+            border: 2px solid var(--bee-black);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(to bottom, #fff9e6 0%, #fff0b3 100%);
+            transition: all 0.3s ease;
+            position: relative;
         }
-        .user-menu{
-            text-align: left;
-            
+        
+        .bee-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
-
-
-
-
+        
+        .bee-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--bee-yellow);
+        }
+        
+        .bee-card-img {
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 2px dashed var(--bee-black);
+            transition: transform 0.5s ease;
+        }
+        
+        .bee-card-img:hover {
+            transform: scale(1.05);
+        }
+        
+        .bee-card-body {
+            padding: 1.5rem;
+        }
+        
+        .bee-card-title {
+            color: var(--bee-black);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .bee-card-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--bee-yellow);
+        }
+        
+        .bee-card-text {
+            color: var(--bee-text-dark);
+            line-height: 1.6;
+        }
+        
+        .bee-read-more {
+            color: var(--bee-black);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 0.5rem;
+            transition: all 0.3s;
+        }
+        
+        .bee-read-more:hover {
+            color: var(--bee-yellow);
+            text-decoration: underline;
+            transform: translateX(5px);
+        }
+        
+        .bee-card-footer {
+            background-color: rgba(255, 255, 255, 0.7);
+            border-top: 1px dashed var(--bee-black);
+            padding: 0.75rem 1.5rem;
+        }
+        
+        .bee-badge {
+            background-color: var(--bee-black);
+            color: var(--bee-yellow);
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+        }
+        
+        .bee-modal-content {
+            border: 3px solid var(--bee-black);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .bee-modal-header {
+            background-color: var(--bee-black);
+            color: var(--bee-yellow);
+            border-bottom: 2px dashed var(--bee-yellow);
+        }
+        
+        .bee-modal-body {
+            padding: 0;
+        }
+        
+        .bee-modal-img {
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+            object-fit: contain;
+        }
+        
+        .bee-modal-footer {
+            background-color: var(--bee-light-yellow);
+            border-top: 1px dashed var(--bee-black);
+        }
+        
+        .bee-btn {
+            background-color: var(--bee-black);
+            color: var(--bee-yellow);
+            border: 2px solid var(--bee-black);
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .bee-btn:hover {
+            background-color: var(--bee-yellow);
+            color: var(--bee-black);
+            border-color: var(--bee-black);
+        }
+        
+        .bee-flying {
+            position: fixed;
+            font-size: 1.5rem;
+            color: var(--bee-black);
+            opacity: 0.6;
+            z-index: -1;
+            animation: fly 15s linear infinite;
+        }
+        
+        @keyframes fly {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(50vw, -20vh) rotate(10deg);
+            }
+            50% {
+                transform: translate(100vw, 0) rotate(0deg);
+            }
+            75% {
+                transform: translate(50vw, 20vh) rotate(-10deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+        }
     </style>
 </head>
-<body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">زنبورداری</a>  
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">خانه</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://beetools.ir/">محصولات فروشگاهی </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="number.php">شماره تماس : برای مشاهده به پایین صفحه مراجعه کنید</a>
-                </li>
-            </ul>
-            <?php
-            if (session_status() === PHP_SESSION_NONE) {
-                session_start();
-            }
-            ?>
-
-            <div class="user-menu" dir="ltr">
-                <?php if(isset($_SESSION['username'])): ?>
-                    <div class="username" onclick="toggleMenu()">
-                        <?= htmlspecialchars($_SESSION['username']) ?>
-                        <div class="dropdown" id="dropdownMenu">
-                            <a href="dashbord.php">داشبورد</a>
-                            <a href="logout.php">خروج</a>
+<!-- زنبورهای پرنده در پس‌زمینه -->
+    <i class="fas fa-bee bee-flying" style="top: 20%; left: 5%; animation-delay: 0s;"></i>
+    <i class="fas fa-bee bee-flying" style="top: 40%; left: 80%; animation-delay: 3s; animation-duration: 18s;"></i>
+    <i class="fas fa-bee bee-flying" style="top: 70%; left: 15%; animation-delay: 6s; animation-duration: 20s;"></i>
+    
+    <div class="bee-overlay">
+        <div class="container py-4">
+            <h1 class="text-center mb-5" style="color: var(--bee-black); position: relative;">
+                
+                <span class="bee-badge position-absolute top-0 start-50 translate-middle">جدیدترین مطالب زنبورداری</span>
+            </h1>
+            
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <?php
+                $link = mysqli_connect("localhost", "root", "", "onenewsdb");
+                $result = mysqli_query($link, "SELECT * FROM `news`");
+                mysqli_close($link);
+                
+                $counter = 0;
+                while($row = mysqli_fetch_array($result)) {
+                    $counter++;
+                    $shortText = substr($row["text"], 0, 100);
+                ?>
+                <div class="col">
+                    <div class="card h-100 bee-card">
+                        <!-- تصویر با قابلیت کلیک برای نمایش بزرگ -->
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal<?php echo $counter; ?>">
+                            <img src="<?php echo htmlspecialchars($row["imageurl"]); ?>" class="bee-card-img" alt="<?php echo htmlspecialchars($row["title"]); ?>">
+                        </a>
+                        
+                        <div class="bee-card-body">
+                            <h5 class="bee-card-title"><?php echo htmlspecialchars($row["title"]); ?></h5>
+                            <p class="bee-card-text">
+                                <span id="shortText<?php echo $counter; ?>">
+                                    <?php echo htmlspecialchars($shortText); ?>
+                                    <?php if(strlen($row["text"]) > 100): ?>...<?php endif; ?>
+                                </span>
+                                <span id="fullText<?php echo $counter; ?>" style="display:none;">
+                                    <?php echo htmlspecialchars($row["text"]); ?>
+                                </span>
+                            </p>
+                            
+                            <?php if(strlen($row["text"]) > 100): ?>
+                            <button class="btn btn-link bee-read-more p-0" 
+                                    onclick="toggleText(<?php echo $counter; ?>)"
+                                    data-more="مشاهده بیشتر" 
+                                    data-less="مشاهده کمتر">
+                                مشاهده بیشتر
+                            </button>
+                            <?php endif; ?>
+                        </div>
+                        
+                        <div class="bee-card-footer d-flex justify-content-between align-items-center">
+                            <small class="text-muted">
+                                <i class="fas fa-calendar-alt me-1"></i>
+                                <?php echo date('Y/m/d'); ?>
+                            </small>
+                            <span class="badge bg-warning text-dark">
+                                <i class="fas fa-eye me-1"></i>
+                                <?php echo rand(100, 500); ?>
+                            </span>
                         </div>
                     </div>
-                <?php else: ?>
-                    <a href="login.php" class="login-btn">ورود</a>
-                <?php endif; ?>
+                </div>
+
+                <!-- Modal برای نمایش تصویر بزرگ -->
+                <div class="modal fade" id="imageModal<?php echo $counter; ?>" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content bee-modal-content">
+                            <div class="modal-header bee-modal-header">
+                                <h5 class="modal-title"><?php echo htmlspecialchars($row["title"]); ?></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body bee-modal-body">
+                                <img src="<?php echo htmlspecialchars($row["imageurl"]); ?>" class="bee-modal-img" alt="<?php echo htmlspecialchars($row["title"]); ?>">
+                            </div>
+                            <div class="modal-footer bee-modal-footer">
+                                <button type="button" class="btn bee-btn" data-bs-dismiss="modal">
+                                    <i class="fas fa-times me-1"></i> بستن
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+                }
+                ?>
             </div>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <div class="hero ">
-        <h2>به دنیای زنبورداری خوش آمدید!</h2>
-        
-        <p>با ما در سفر به دنیای زنبوران و عسل‌های طبیعی همراه شوید.</p>
-       
-        <img src="./images/image10.jpg" class="card-img-top" alt="">
-
-        </div>
-
-    <!-- About Section -->
-    <div class="container mt-5">
-        <h2>:درباره ما</h2>
-        <p>زنبورداری یکی از فعالیت‌های مهم و جذاب کشاورزی است که نه تنها به تولید عسل و سایر محصولات زنبور عسل مانند موم و ژل رویال کمک می‌کند، بلکه نقش بسزایی در گرده‌افشانی گیاهان و افزایش تولید محصولات زراعی نیز دارد. این شغل نیازمند دانش و مهارت‌های خاصی است، زیرا زنبوردار باید با رفتار زنبورها، نیازهای آن‌ها و شرایط محیطی آشنا باشد.
-
-            زنبورعسل به عنوان یکی از مهم‌ترین موجودات گرده‌افشان، در حفظ تنوع زیستی و سلامت اکوسیستم بسیار موثر است. به همین دلیل، زنبورداری نه تنها یک منبع درآمد پایدار برای زنبورداران به شمار می‌رود، بلکه به حفاظت از محیط زیست و کشاورزی پایدار نیز کمک می‌کند.
-            
-            علاوه بر تولید عسل خالص و طبیعی، زنبورداری به عنوان یک صنعت می‌تواند اشتغال‌زایی و رونق اقتصادی را در مناطق روستایی به همراه داشته باشد. به همین دلیل، توجه به آموزش و ترویج زنبورداری در کشور می‌تواند به توسعه پایدار و بهبود معیشت کشاورزان کمک کند.</p>
-      
-         <img src="./images/download.jpg" class="card-img-top " alt="محصول 1">
-    <!-- here -->
     </div>
-    <div class="container mt-5  dir:rtl">
-        <h2>:بیشتر بدانی</h2>
-        <p>زنبورداری یا پرورش زنبور عسل، فرآیند نگهداری و مدیریت زنبورهای عسل به منظور تولید عسل، موم و دیگر محصولات زنبور است. این فعالیت شامل ایجاد کندوها، مراقبت از زنبورها، جمع‌آوری عسل و مدیریت بیماری‌ها و آفات زنبور است. زنبورداری نه تنها به تأمین محصولات غذایی کمک می‌کند، بلکه نقش مهمی در گرده‌افشانی گیاهان و حفظ تنوع زیستی ایفا می‌کند. زنبورداران باید با رفتار زنبورها، شرایط آب و هوایی و نیازهای غذایی آن‌ها آشنا باشند تا بتوانند به طور مؤثر از این حشرات مفید نگهداری کنند.
-        زنبورداری یک فعالیت کشاورزی و اقتصادی است که به پرورش زنبورهای عسل و تولید عسل و سایر محصولات زنبورعسل مانند موم، ژل رویال و گرده گل می‌پردازد. این حرفه نه تنها به تولید عسل کمک می‌کند، بلکه نقش مهمی در گرده‌افشانی گیاهان و بهبود تولید محصولات کشاورزی ایفا می‌کند.
-            زنبورداری به دلایل مختلفی مورد توجه قرار می‌گیرد:
-            
-            تولید عسل عسل یکی از محصولات طبیعی و مغذی است که در بسیاری از فرهنگ‌ها به عنوان یک ماده غذایی و دارویی مورد استفاده قرار می‌گیرد.
-            
-            محصولات جانبی علاوه بر عسل، زنبورداری تولید محصولات دیگری مانند موم (که در صنایع مختلف از جمله شمع‌سازی و آرایشی به کار می‌رود)، گرده گل (به عنوان مکمل غذایی) و ژل رویال (به عنوان یک ماده مغذی) را نیز در بر می‌گیرد.
-            
-            گرده‌افشانی زنبورهای عسل به عنوان گرده‌افشان‌های طبیعی، نقش حیاتی در افزایش تولید محصولات کشاورزی دارند. آن‌ها با انتقال گرده از گل به گل، به باروری گیاهان کمک می‌کنند.
-            حفظ تنوع زیستی زنبورداری می‌تواند به حفظ تنوع زیستی کمک کند، زیرا زنبورها به گرده‌افشانی گیاهان وحشی نیز کمک می‌کنند.
-            برای شروع زنبورداری، نیاز به دانش و مهارت‌های خاصی در زمینه زندگی زنبورها، مدیریت کندوها، و شناخت بیماری‌ها و آفات زنبورعسل وجود دارد. همچنین انتخاب محل مناسب برای قرار دادن کندوها و تأمین منابع غذایی کافی برای زنبورها از اهمیت بالایی برخوردار است.
-            زنبورداری می‌تواند یک منبع درآمد پایدار و یک فعالیت مفید برای محیط زیست باشد، به شرطی که با دانش و دقت انجام شود.</p>
-         <img src="./images/image1.jpg" class="card-img-top" alt="محصول 1">
+
+    <script>
+  function toggleText(id) {
+    // 1. انتخاب المان‌های مورد نیاز
+    const shortText = document.getElementById(`shortText${id}`);
+    const fullText = document.getElementById(`fullText${id}`);
+    const btn = document.querySelector(`button[onclick="toggleText(${id})"]`);
     
-         
-    </div>
-</div>
-<div class="container mt-5">
-    <h2>:کندو</h2>
-    <p>کندو، خانه‌ای است که زنبورهای عسل در آن زندگی می‌کنند و عسل تولید می‌کنند. این ساختار معمولاً از موم طبیعی ساخته شده و شامل سلول‌های شش‌ضلعی است که برای ذخیره عسل و تخم‌گذاری استفاده می‌شود. زنبورها در کندو به صورت اجتماعی زندگی می‌کنند و هر یک نقش خاصی در جمعیت دارند؛ از جمله ملکه، کارگران و نرها. کندوها نه تنها منبعی برای تولید عسل هستند، بلکه نقش مهمی در گرده‌افشانی گیاهان و حفظ اکوسیستم ایفا می‌کنند. زندگی در کندو نشان‌دهنده همکاری و هماهنگی بالای زنبورهاست که باعث موفقیت آن‌ها در طبیعت می‌شود.</p>
-    <p>کندو زنبور، خانه‌ای است که زنبورهای عسل در آن زندگی و کار می‌کنند. این ساختار شگفت‌انگیز به گونه‌ای طراحی شده است که زنبورها بتوانند به بهترین شکل ممکن از منابع طبیعی بهره‌برداری کنند و در عین حال از همدیگر محافظت کنند. 
-    کندو معمولاً از موم زنبور ساخته شده است و دارای سلول‌های شش‌ضلعی است که برای ذخیره عسل و گرده گل و همچنین برای پرورش لاروها استفاده می‌شود. زنبورهای کارگر، وظیفه ساختن و نگهداری از کندو را بر عهده دارند و با همکاری هم، محیطی مناسب برای زندگی و تولید مثل ملکه زنبور فراهم می‌کنند.
-        
-        زنبورهای عسل نقش مهمی در pollination یا گرده‌افشانی گیاهان دارند، که این امر تأثیر زیادی بر تولید محصولات کشاورزی و حفظ تنوع زیستی دارد. کندوها به عنوان یک اکوسیستم کوچک عمل می‌کنند و هر یک از زنبورها وظایف خاصی دارند که به بقای کل جامعه کمک می‌کند.
-        
-        زندگی اجتماعی زنبورها و سازماندهی آن‌ها در کندو، نمونه‌ای از هماهنگی و همکاری در طبیعت است. این موجودات کوچک با کار سخت و فداکاری خود، به ما یادآوری می‌کنند که چگونه می‌توان با همیاری و تلاش مشترک، به اهداف بزرگ‌تر دست یافت.</p>
-     <img src="./images/image5.jpg" class="card-img-top" alt="محصول 1">
-     <a href="https://honarfardi.com/public-skills/others/about-breeding-bee/" class="btn btn-primary">بیشتر بدانید</a>
-     
-</div>
-     <!--and here-->
+    // 2. بررسی وضعیت فعلی متن
+    if (shortText.style.display === 'none') {
+        // 3. اگر متن کوتاه مخفی بود (یعنی متن کامل در حال نمایش است)
+        shortText.style.display = 'inline'; // نمایش متن کوتاه
+        fullText.style.display = 'none';    // مخفی کردن متن کامل
+        btn.textContent = btn.getAttribute('data-more'); // تغییر متن دکمه به "مشاهده بیشتر"
+        btn.classList.remove('text-warning'); // حذف کلاس رنگ زرد
+    } else {
+        // 4. اگر متن کوتاه در حال نمایش بود
+        shortText.style.display = 'none';   // مخفی کردن متن کوتاه
+        fullText.style.display = 'inline';  // نمایش متن کامل
+        btn.textContent = btn.getAttribute('data-less'); // تغییر متن دکمه به "مشاهده کمتر"
+        btn.classList.add('text-warning');  // اضافه کردن کلاس رنگ زرد
+    }
+}
+    </script>
 
-    <!-- Products Section -->
-    <div class="container mt-5">
-        <h2>:محصولات ما</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="./images/imagess.png" class="card-img-top" alt="محصول 1"  href="https://golafraz.com/13992/esfahan-buy-honey/">
-                    <div class="card-body">
-                        <a href="https://golafraz.com/13992/esfahan-buy-honey/" class="card-title">عسل طبیعی</a>
-                        <p class="card-text">عسل طبیعی یکی از شیرین‌ترین و مغذی‌ترین خوراکی‌هاست که به‌طور مستقیم از شهد گل‌ها توسط زنبورهای عسل تولید می‌شود. این ماده غذایی نه‌تنها طعم لذیذی دارد، بلکه دارای خواص درمانی فراوانی نیز هست. عسل طبیعی سرشار از ویتامین‌ها، مواد معدنی و آنتی‌اکسیدان‌هاست و می‌تواند به تقویت سیستم ایمنی بدن، بهبود عملکرد گوارش و تسکین سرفه کمک کند. همچنین، استفاده از عسل به‌عنوان یک شیرین‌کننده طبیعی می‌تواند گزینه‌ای سالم‌تر نسبت به شکر باشد. با این حال، برای بهره‌مندی از خواص آن، باید از عسل‌های خالص و بدون افزودنی استفاده کرد.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="./images/image4.png" class="card-img-top" alt="محصول 2">
-                    <div class="card-body">
-                        <a  href="https://golafraz.com/13992/esfahan-buy-honey/" class="card-title">موم زنبور</a>
-                        <p class="card-text">موم زنبور، یک ماده طبیعی و ارزشمند است که توسط زنبورهای عسل تولید می‌شود. این ماده نرم و قابل انعطاف از ترشح غدد مخصوص زنبورها به دست می‌آید و در ساخت کندو و سلول‌های عسل استفاده می‌شود. موم زنبور دارای خواص ضدباکتریایی و ضدالتهابی است و به همین دلیل در صنایع آرایشی و بهداشتی، داروسازی و حتی در تولید شمع‌ها کاربرد دارد. همچنین، به دلیل ویژگی‌های حفاظتی آن، در صنایع غذایی نیز برای بسته‌بندی و حفظ تازگی محصولات استفاده می‌شود. موم زنبور نه تنها یک محصول مفید و کاربردی است، بلکه نشان‌دهنده تلاش و همکاری زنبورها در طبیعت نیز می‌باشد.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="./images/images8.png" class="card-img-top" alt="محصول 3" >
-                    <div class="card-body">
-                        <a  href="https://alibabaasal.ir/product/%D8%AE%D8%B1%DB%8C%D8%AF-%DA%98%D9%84-%D8%B1%D9%88%DB%8C%D8%A7%D9%84/"class="card-title">ژل رویال</a>
-                        <p class="card-text">ژل رویال، ماده‌ای مغذی و شیری رنگ است که توسط زنبورهای کارگر تولید می‌شود و به عنوان تغذیه اولیه ملکه زنبورهای عسل استفاده می‌شود. این ماده حاوی ویتامین‌ها، مواد معدنی، آنتی‌اکسیدان‌ها و پروتئین‌هاست و به همین دلیل خواص درمانی و بهداشتی زیادی دارد. ژل رویال به عنوان یک مکمل غذایی در طب سنتی و مدرن مورد توجه قرار گرفته و اعتقاد بر این است که می‌تواند به تقویت سیستم ایمنی، افزایش انرژی و بهبود سلامت پوست کمک کند. همچنین، برخی تحقیقات نشان داده‌اند که این ماده ممکن است در کاهش التهاب و بهبود وضعیت روحی مؤثر باشد. با این حال، مصرف آن باید با احتیاط صورت گیرد و افرادی که به زنبورعسل حساسیت دارند، باید از آن پرهیز کنند.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer mt-5">
-        <h3>تمام حقوق برای این سایت محفوظ است</h3>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <?php
+    include("them-footer.html");
+    ?>
 </body>
 </html>
