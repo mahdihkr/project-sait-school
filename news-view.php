@@ -1,5 +1,5 @@
 <?php
-// اتصال به دیتابیس
+ob_start(); // ⬅️ این خط فعال می‌کنه بافر خروجی برای جلوگیری از خطای header
 include("them-header.php");
 
 $link = mysqli_connect("localhost", "beesio_root", "m123456", "beesio_root");
@@ -103,5 +103,6 @@ $comments = mysqli_query($link, "SELECT * FROM comments WHERE news_id = $id ORDE
 </html>
 
 <?php
-include("them-footer.html")
+include("them-footer.html");
+ob_end_flush(); // ⬅️ تمام خروجی رو ارسال می‌کنه
 ?>

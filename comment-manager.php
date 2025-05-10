@@ -141,7 +141,7 @@ function hideEditForm(id) {
 
 function deleteComment(id) {
     if (confirm("آیا از حذف این نظر مطمئن هستید؟")) {
-        window.location.href = "comment_action.php?action=delete&id=" + id;
+        window.location.href = "comment-action.php?action=delete&id=" + id;
     }
 }
 </script>

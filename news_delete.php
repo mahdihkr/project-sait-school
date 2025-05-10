@@ -24,7 +24,7 @@ if(!$row) {
 $deleted = false;
 try {
     unlink($row["imageurl"]);
-    $link = mysqli_connect("localhost", "root", "", "onenewsdb");
+      $link = mysqli_connect("localhost", "beesio_root", "m123456", "beesio_root");
     $result = mysqli_query($link, "DELETE FROM `news` WHERE `id`=$id");
     mysqli_close($link);
     $deleted = ($result === true);

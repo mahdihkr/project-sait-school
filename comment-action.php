@@ -8,7 +8,7 @@ if (!isset($_SESSION["manager"])) {
 
 $link = mysqli_connect("localhost", "beesio_root", "m123456", "beesio_root");
 if (!$link) {
-    die("خطا در اتصال به پایگاه داده.");
+    die("خطا در اتصال به پایگاه داده: " . mysqli_connect_error());
 }
 
 $action = $_POST["action"] ?? $_GET["action"] ?? "";
@@ -17,14 +17,26 @@ $id = intval($_POST["id"] ?? $_GET["id"] ?? 0);
 if ($action == "delete" && $id > 0) {
     $sql = "DELETE FROM comments WHERE id = ?";
     $stmt = mysqli_prepare($link, $sql);
+    if ($stmt === false) {
+        die("خطا در آماده‌سازی کوئری: " . mysqli_error($link));
+    }
     mysqli_stmt_bind_param($stmt, "i", $id);
-    mysqli_stmt_execute($stmt);
+    if (!mysqli_stmt_execute($stmt)) {
+        die("خطا در اجرای کوئری: " . mysqli_stmt_error($stmt));
+    }
+    mysqli_stmt_close($stmt);
 } elseif ($action == "edit" && $id > 0) {
     $new_comment = mysqli_real_escape_string($link, $_POST["new_comment"]);
     $sql = "UPDATE comments SET comment = ? WHERE id = ?";
     $stmt = mysqli_prepare($link, $sql);
+    if ($stmt === false) {
+        die("خطا در آماده‌سازی کوئری: " . mysqli_error($link));
+    }
     mysqli_stmt_bind_param($stmt, "si", $new_comment, $id);
-    mysqli_stmt_execute($stmt);
+    if (!mysqli_stmt_execute($stmt)) {
+        die("خطا در اجرای کوئری: " . mysqli_stmt_error($stmt));
+    }
+    mysqli_stmt_close($stmt);
 }
 
 header("Location: comment-manager.php");

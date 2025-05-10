@@ -139,23 +139,21 @@ session_start();
                             </a>
                         </li>
                     <?php endif; ?>
-                    
-                    <!-- لینک سبد خرید برای همه کاربران -->
-                    <li class="nav-item">
-                        <a class="nav-link cart-link" href="cart.php">
-                            <i class="fas fa-shopping-cart"> سبد خرید</i>
-                            <?php if (!empty($_SESSION['cart'])): ?>
-                                <span class="cart-count"><?php echo count($_SESSION['cart']); ?></span>
-                            <?php endif; ?>
-                        </a>
-                    </li>
-                    
+
                     <?php if(isset($_SESSION["manager"])): ?>
                         <li class="nav-item">
                             <a class="nav-link" href="news.php">
                                 <i class="fas fa-cog"></i> مدیریت
                             </a>
                         </li>
+                    <?php endif; ?>
+                    <?php if(isset($_SESSION["manager"])): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="comment-manager.php">
+                                <i class="fas fa-cog"></i> نظرات
+                            </a>
+                        </li>
+                        
                     <?php endif; ?>
                     <li class="nav-item">
                         <a class="nav-link" href="about.php">
