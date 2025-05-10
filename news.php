@@ -112,7 +112,7 @@ if(!isset($_SESSION["manager"])){
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         <?php
-        $link = mysqli_connect("localhost", "root", "", "onenewsdb");
+        $link = mysqli_connect("localhost", "beesio_root", "m123456", "beesio_root");
         $result = mysqli_query($link, "SELECT * FROM `news`");
         mysqli_close($link);
         
