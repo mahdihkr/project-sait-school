@@ -10,7 +10,8 @@ if (!isset($_SESSION["manager"])) {
 }
 
 // اتصال به پایگاه داده
-$link = mysqli_connect("localhost", "beesio_root", "m123456", "beesio_root");
+      $link=mysqli_connect("localhost","root","","onenewsdb");  
+        $result = mysqli_query($link, "DELETE FROM `news` WHERE `id`=$id");
 if (!$link) {
     die("خطا در اتصال به پایگاه داده.");
 }
