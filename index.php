@@ -61,9 +61,9 @@
     <h2 class="text-center mb-4">مطالب زنبورداری</h2>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
       <?php
-      $link = mysqli_connect("localhost", "beesio_root", "m123456", "beesio_root");
-      $result = mysqli_query($link, "SELECT * FROM news ORDER BY id DESC");
-      while($row = mysqli_fetch_array($result)) {
+      $link=mysqli_connect("localhost","root","","onenewsdb");
+       $result = mysqli_query($link, "SELECT * FROM news ORDER BY id DESC");   
+      while($row = mysqli_fetch_array($result)) {   
           $id = $row['id'];
           $title = htmlspecialchars($row['title']);
           $text = htmlspecialchars($row['text']);

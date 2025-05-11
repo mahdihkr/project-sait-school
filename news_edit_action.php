@@ -8,8 +8,8 @@ $id=$_POST["id"];
 $imageurl="images/".$image;
 move_uploaded_file($_FILES["image"]["tmp_name"],$imageurl);
 
-$link = mysqli_connect("localhost", "beesio_root", "m123456", "beesio_root");
-$result=mysqli_query($link,"UPDATE `news` SET `title`='$title',`text`='$text',`imageurl`='$imageurl' WHERE `id`='$id'");
+      $link=mysqli_connect("localhost","root","","onenewsdb");
+      $result=mysqli_query($link,"UPDATE `news` SET `title`='$title',`text`='$text',`imageurl`='$imageurl' WHERE `id`='$id'");
 mysqli_close($link);
 if($result===true){
     ?>

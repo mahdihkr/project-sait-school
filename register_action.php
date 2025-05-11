@@ -4,8 +4,8 @@ $name=$_POST["name"];
 $username=$_POST["username"];
 $password=$_POST["password"];
 
-$link = mysqli_connect("localhost", "beesio_root", "m123456", "beesio_root");
-$result=mysqli_query($link,"INSERT INTO `user`(`name`, `username`, `password`) 
+      $link=mysqli_connect("localhost","root","","onenewsdb");
+      $result=mysqli_query($link,"INSERT INTO `user`(`name`, `username`, `password`) 
                     VALUES ('$name','$username','$password')");
 mysqli_close($link);
 

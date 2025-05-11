@@ -7,8 +7,7 @@ $text=$_POST["text"];
 $imageurl="images/".$image;
 move_uploaded_file($_FILES["image"]["tmp_name"],$imageurl);
 
-$link = mysqli_connect("localhost", "beesio_root", "m123456", "beesio_root");
-$result=mysqli_query($link,"INSERT INTO `news`(`title`, `text`, `imageurl`) 
+      $link=mysqli_connect("localhost","root","","onenewsdb");$result=mysqli_query($link,"INSERT INTO `news`(`title`, `text`, `imageurl`) 
                     VALUES ('$title','$text','$imageurl')");
 mysqli_close($link);
 if($result===true){

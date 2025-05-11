@@ -3,8 +3,8 @@ include("them-header.php");
 $id = $_GET["id"];
 
 // اتصال به دیتابیس و دریافت اطلاعات خبر
-$link = mysqli_connect("localhost", "beesio_root", "m123456", "beesio_root");
-$result = mysqli_query($link, "SELECT * FROM `news` WHERE id=$id");
+      $link=mysqli_connect("localhost","root","","onenewsdb");
+      $result = mysqli_query($link, "SELECT * FROM `news` WHERE id=$id");
 $row = mysqli_fetch_array($result);
 mysqli_close($link);
 

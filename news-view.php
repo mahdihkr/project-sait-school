@@ -2,8 +2,8 @@
 ob_start(); // ⬅️ این خط فعال می‌کنه بافر خروجی برای جلوگیری از خطای header
 include("them-header.php");
 
-$link = mysqli_connect("localhost", "beesio_root", "m123456", "beesio_root");
-$id = intval($_GET['id']); // گرفتن id خبر
+      $link=mysqli_connect("localhost","root","","onenewsdb");
+      $id = intval($_GET['id']); // گرفتن id خبر
 
 // ثبت نظر اگر فرم ارسال شده باشد
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['submit_comment'])) {
