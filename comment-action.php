@@ -6,8 +6,8 @@ if (!isset($_SESSION["manager"])) {
     exit();
 }
 
-$link = mysqli_connect("localhost", "beesio_root", "m123456", "beesio_root");
-if (!$link) {
+      $link=mysqli_connect("localhost","root","","onenewsdb");  
+        $result = mysqli_query($link, "DELETE FROM `comments` WHERE 0");if (!$link) {
     die("خطا در اتصال به پایگاه داده: " . mysqli_connect_error());
 }
 

@@ -5,8 +5,8 @@ if (!isset($_SESSION["manager"])) {
     exit();
 }
 
-$link = mysqli_connect("localhost", "beesio_root", "m123456", "beesio_root");
-$id = intval($_GET["id"] ?? 0);
+      $link=mysqli_connect("localhost","root","","onenewsdb");  
+        $result = mysqli_query($link, "DELETE FROM `news` WHERE `id`=$id");$id = intval($_GET["id"] ?? 0);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $comment = mysqli_real_escape_string($link, $_POST["comment"]);
